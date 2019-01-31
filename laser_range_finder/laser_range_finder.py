@@ -129,10 +129,10 @@ class LaserRangeFinder(object):
             save_images_dir = os.path.expanduser(save_images_dir)
             assert os.path.isdir(save_images_dir), 'Invalid directory: %s' % save_images_dir
         
-        if isinstance(off_img, basestring):
+        if isinstance(off_img, str):
             off_img = Image.open(os.path.expanduser(off_img)).convert('RGB')
             
-        if isinstance(on_img, basestring):
+        if isinstance(on_img, str):
             on_img = Image.open(os.path.expanduser(on_img)).convert('RGB')
         
         # Normalize image brightness.
@@ -179,8 +179,8 @@ class LaserRangeFinder(object):
         y = np.asarray(x.getdata(), dtype=np.float64).reshape((x.size[1], x.size[0]))
         laser_measurements = [0]*width # [row]
         laser_brightness = [0]*width # [brightness]
-        for col_i in xrange(y.shape[1]):
-            col_max = max([(y[row_i][col_i], row_i) for row_i in xrange(y.shape[0])])
+        for col_i in range(y.shape[1]):
+            col_max = max([(y[row_i][col_i], row_i) for row_i in range(y.shape[0])])
             col_max_brightness, col_max_row = col_max
             laser_measurements[col_i] = col_max_row
             laser_brightness[col_i] = col_max_brightness
