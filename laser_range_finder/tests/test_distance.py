@@ -56,7 +56,7 @@ def test_samples(**kwargs):
         )
         _distances_10 = utils.compress_list(distances, as_int=1)
         if verbose:
-            print 'distances:', cnt, _distances_10
+            print('distances:', cnt, _distances_10)
         if assert_test:
             assert _distances_10 == distances_10
         
@@ -97,7 +97,7 @@ def test_optimize():
     for params in combs:
         blur_radius, filter_outliers, outlier_filter_threshold, normalize_brightness = params
         i += 1
-        print '%i of %i' % (i, total),
+        print('%i of %i' % (i, total)),
         error = test_samples(
             blur_radius=blur_radius,
             filter_outliers=filter_outliers,
@@ -107,12 +107,12 @@ def test_optimize():
             verbose=False,
         )
         best = min(best, (error, params))
-        print error, params
+        print(error, params)
     
-    print
+    print()
     best_error, best_params = best
     best_params = dict(zip(param_keys, best_params))
-    print 'best:', best_error, best_params
+    print('best:', best_error, best_params)
 
 def test_calibrate():
     fn = os.path.join(CURRENT_DIR, '../../docs/data/calibrate.yml')
@@ -132,10 +132,10 @@ def test_calibrate():
     print('D_lst:', D_lst)
     
     mae = []
-    for i, actual_dist in calibration_data['distances'].iteritems():
-        print actual_dist, D_lst[i]
+    for i, actual_dist in calibration_data['distances'].items():
+        print(actual_dist, D_lst[i])
         mae.append(abs(actual_dist - D_lst[i]))
     mae = sum(mae)/float(len(mae))
-    print 'MAE:', mae
+    print ('MAE:', mae)
     assert mae == 48.857111449781485
     
