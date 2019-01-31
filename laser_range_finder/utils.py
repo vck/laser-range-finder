@@ -10,7 +10,7 @@ def compress_list(lst, bins=10, as_int=0, ignore_negative=True):
     """
     new_lst = []
     chunk_size = int(round(len(lst)/float(bins)))
-    for bin in xrange(bins):
+    for bin in range(bins):
         samples = lst[bin*chunk_size:bin*chunk_size+chunk_size]
         if ignore_negative:
             samples = [_ for _ in samples if _ >= 0]
